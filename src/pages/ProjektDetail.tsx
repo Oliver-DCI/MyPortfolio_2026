@@ -36,7 +36,7 @@ const ProjectDetail = () => {
       </div>
 
       {/* Hero Header */}
-      <section className="relative h-[70vh] w-full overflow-hidden border-b border-white/5">
+      <section className="relative h-[60vh] w-full overflow-hidden border-b border-white/5">
         <motion.img 
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
@@ -45,9 +45,8 @@ const ProjectDetail = () => {
           alt={project.title} 
           className="w-full h-full object-cover"
         />
-        {/* Overlay für bessere Lesbarkeit und Tiefe */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-transparent" />
-        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/60 to-transparent" />
+        <div className="absolute inset-0 bg-black/30" />
         
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-20">
           <div className="max-w-7xl mx-auto">
@@ -56,13 +55,13 @@ const ProjectDetail = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
             >
-              <h1 className="text-6xl md:text-[10rem] font-black uppercase tracking-[-0.05em] mb-6 leading-[0.8] text-white mix-blend-difference">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-8 leading-tight text-white mix-blend-difference">
                 {project.title}
               </h1>
               <div className="flex flex-wrap gap-2">
                 {project.tech.map(t => (
                   <span key={t} className="px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest
-                                           bg-white/10 border border-white/20 text-white backdrop-blur-md">
+                                           bg-white/5 border border-white/10 text-white/60 backdrop-blur-md">
                     {t}
                   </span>
                 ))}
@@ -76,26 +75,27 @@ const ProjectDetail = () => {
       <main className="max-w-7xl mx-auto px-6 mt-24 grid md:grid-cols-12 gap-16">
         
         {/* Links: Beschreibung */}
-        <div className="md:col-span-8 space-y-16">
-          <div className="space-y-6">
-            <div className="flex items-center gap-4 opacity-30">
-              <Code2 size={16} className="text-[var(--accent)]" />
-              <span className="text-xs font-black uppercase tracking-[0.4em]">The Concept</span>
+        <div className="md:col-span-8 space-y-20">
+          <div className="space-y-8">
+            <div className="flex items-center gap-4 opacity-20">
+              <Code2 size={14} className="text-[var(--accent)]" />
+              <span className="text-[10px] font-black uppercase tracking-[0.5em]">The Concept</span>
             </div>
-            <p className="text-2xl md:text-4xl leading-[1.2] font-bold text-[var(--text-main)] tracking-tight">
+            
+            {/* Hier wurde die "Wucht" entfernt: Font-normal, text-lg/xl, hohe Line-Height */}
+            <p className="text-lg md:text-xl leading-[1.8] font-normal text-[var(--text-main)] opacity-70 tracking-wide max-w-3xl">
               {project.fullDescription}
             </p>
           </div>
           
-          {/* Bild-Platzhalter / Screenshot Box */}
-          <div className="group relative aspect-video rounded-[2rem] overflow-hidden bg-white/5 border border-white/10 transition-all hover:border-[var(--accent)]/30">
+          {/* Screenshot Box */}
+          <div className="group relative aspect-video rounded-[1.5rem] overflow-hidden bg-white/[0.02] border border-white/5 transition-all hover:border-[var(--accent)]/20">
              <div className="absolute inset-0 flex items-center justify-center flex-col gap-4">
-                <Layout className="opacity-10 group-hover:text-[var(--accent)] group-hover:opacity-100 transition-all" size={48} />
-                <span className="text-[10px] font-black uppercase tracking-[0.4em] opacity-20 group-hover:opacity-100 transition-all">
-                  Showcase Preview Coming Soon
+                <Layout className="opacity-5 group-hover:text-[var(--accent)] group-hover:opacity-40 transition-all" size={40} />
+                <span className="text-[9px] font-black uppercase tracking-[0.4em] opacity-10 group-hover:opacity-40 transition-all">
+                  Showcase Preview
                 </span>
              </div>
-             {/* Animierter Glow im Hintergrund der Box */}
              <div className="absolute -inset-full bg-gradient-to-tr from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
           </div>
         </div>
@@ -103,9 +103,9 @@ const ProjectDetail = () => {
         {/* Rechts: Sidebar */}
         <div className="md:col-span-4">
           <div className="p-10 rounded-[2.5rem] sticky top-32
-                          bg-white/[0.03] border border-white/10 backdrop-blur-3xl shadow-2xl">
+                          bg-white/[0.02] border border-white/5 backdrop-blur-3xl shadow-2xl">
             
-            <h3 className="text-[10px] font-black mb-10 uppercase tracking-[0.5em] opacity-30 text-center">
+            <h3 className="text-[9px] font-black mb-10 uppercase tracking-[0.5em] opacity-20 text-center">
               Execution & Deploy
             </h3>
             
@@ -114,29 +114,29 @@ const ProjectDetail = () => {
                 href={project.liveUrl || "#"} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between w-full p-6 bg-[var(--accent)] text-black font-black rounded-2xl transition-all hover:scale-[1.02] hover:shadow-[0_20px_40px_-10px_rgba(34,197,94,0.4)]"
+                className="group flex items-center justify-between w-full p-5 bg-[var(--accent)] text-black font-black rounded-xl transition-all hover:scale-[1.02] hover:shadow-[0_15px_30px_-10px_rgba(34,197,94,0.3)]"
               >
-                <span className="tracking-widest uppercase text-xs">Launch Project</span>
-                <Globe size={20} strokeWidth={3} className="group-hover:rotate-12 transition-transform" />
+                <span className="tracking-widest uppercase text-[10px]">Launch Project</span>
+                <Globe size={18} strokeWidth={3} className="group-hover:rotate-12 transition-transform" />
               </a>
 
               <a 
                 href={project.githubUrl || "#"} 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group flex items-center justify-between w-full p-6 bg-white/5 border border-white/10 text-white font-black rounded-2xl transition-all hover:bg-white/10"
+                className="group flex items-center justify-between w-full p-5 bg-white/5 border border-white/10 text-white font-black rounded-xl transition-all hover:bg-white/10"
               >
-                <span className="tracking-widest uppercase text-xs">Source Code</span>
-                <Github size={20} className="group-hover:scale-110 transition-transform" />
+                <span className="tracking-widest uppercase text-[10px]">Source Code</span>
+                <Github size={18} className="group-hover:scale-110 transition-transform" />
               </a>
             </div>
 
             <div className="mt-12 pt-8 border-t border-white/5 space-y-4">
-              <div className="flex justify-between items-center opacity-40">
+              <div className="flex justify-between items-center opacity-30">
                 <span className="text-[9px] font-black uppercase tracking-widest">Year</span>
                 <span className="text-[9px] font-bold">2026</span>
               </div>
-              <div className="flex justify-between items-center opacity-40">
+              <div className="flex justify-between items-center opacity-30">
                 <span className="text-[9px] font-black uppercase tracking-widest">Client</span>
                 <span className="text-[9px] font-bold">VisionDesign Lab</span>
               </div>

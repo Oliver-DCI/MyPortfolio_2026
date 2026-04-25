@@ -29,10 +29,11 @@ const About = () => {
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row gap-16 items-start">
           
-          {/* Linke Seite: Bild-Container mit HERO PARALLAX */}
+          {/* Linke Seite: Bild-Container */}
           <motion.div 
             style={{ y: yImage, rotate: rotateImage }}
-            className="sticky top-32 relative w-full max-w-[300px] aspect-[4/5] shrink-0 mx-auto md:mx-0 group"
+            /* md:mt-5 für die perfekte Balance zwischen Normalzustand und Hover-Vergrößerung */
+            className="sticky top-32 relative w-full max-w-[300px] aspect-[4/5] shrink-0 mx-auto md:mx-0 md:mt-5 group"
           >
             {/* Pulsierender Hintergrund-Glow */}
             <motion.div 
