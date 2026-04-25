@@ -1,6 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
-import { ArrowLeft, ExternalLink, Github, Globe, Code2 } from 'lucide-react';
+// KORREKTUR: 'ExternalLink' wurde hier entfernt
+import { ArrowLeft, Github, Globe, Code2 } from 'lucide-react';
 
 const ProjectDetail = () => {
   const { id } = useParams();
@@ -37,7 +38,6 @@ const ProjectDetail = () => {
           alt={project.title} 
           className="w-full h-full object-cover scale-105"
         />
-        {/* Der Verlauf passt sich jetzt dynamisch an die Hintergrundvariable an */}
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/20 to-transparent" />
         
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-12">
@@ -71,7 +71,6 @@ const ProjectDetail = () => {
             </p>
           </div>
           
-          {/* Bild-Platzhalter / Screenshot Box */}
           <div className="aspect-video rounded-3xl overflow-hidden transition-colors
                           bg-black/[0.03] border border-black/10 
                           dark:bg-white/5 dark:border-white/10">
@@ -81,12 +80,10 @@ const ProjectDetail = () => {
           </div>
         </div>
 
-        {/* Rechts: Sidebar mit Buttons */}
+        {/* Rechts: Sidebar */}
         <div className="space-y-8">
           <div className="p-8 rounded-3xl sticky top-32 transition-all
-                          /* LIGHT MODE: Struktur durch Schatten & Border */
                           bg-black/[0.02] border border-black/10 shadow-xl shadow-black/[0.03]
-                          /* DARK MODE: Deine Glass-Optik */
                           dark:bg-white/5 dark:border-white/10 dark:shadow-none">
             
             <h3 className="text-lg font-bold mb-6 uppercase tracking-widest text-[var(--text-main)] opacity-40 text-center">
@@ -94,7 +91,6 @@ const ProjectDetail = () => {
             </h3>
             
             <div className="space-y-4">
-              {/* LIVE DEMO BUTTON */}
               <a 
                 href={project.liveUrl || "#"} 
                 target="_blank" 
@@ -105,15 +101,12 @@ const ProjectDetail = () => {
                 LIVE ANSEHEN
               </a>
 
-              {/* GITHUB BUTTON */}
               <a 
                 href={project.githubUrl || "#"} 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 w-full py-4 transition-all font-bold rounded-2xl
-                           /* LIGHT: Dunkle Schrift & Graue Border */
                            bg-black/5 border border-black/10 text-black hover:bg-black/10
-                           /* DARK: Weiße Schrift & Helle Border */
                            dark:bg-white/5 dark:border-white/10 dark:text-white dark:hover:bg-white/10"
               >
                 <Github size={20} />

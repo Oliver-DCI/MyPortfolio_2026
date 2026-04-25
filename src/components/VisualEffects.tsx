@@ -1,21 +1,19 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+// KORREKTUR: 'React' entfernt, nur die Hooks importiert
+import { useEffect, useState } from 'react'; 
 import { motion, useSpring, useMotionValue, useScroll } from 'framer-motion';
 
 const VisualEffects = () => {
   const [mounted, setMounted] = useState(false);
   const [isIdle, setIsIdle] = useState(false);
   
-  // Maus-Positionen
   const mouseX = useMotionValue(-100);
   const mouseY = useMotionValue(-100);
 
-  // Smooth-Faktor für den hinterherziehenden Punkt
   const springConfig = { stiffness: 150, damping: 20 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
-  // Scroll Balken oben
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
@@ -43,23 +41,19 @@ const VisualEffects = () => {
 
   return (
     <>
-      {/* 1. LADEBALKEN (Ganz oben) */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 z-[9999] origin-left pointer-events-none bg-[#22c55e]"
         style={{ scaleX, boxShadow: '0 0 15px rgba(34, 197, 94, 0.5)' }}
       />
 
-      {/* 2. DER LICHTKEGEL (Taschenlampe) - Jetzt kleiner & dezenter */}
       <motion.div
         className="fixed inset-0 pointer-events-none z-[50]"
         animate={{
-          // Radius auf 180px reduziert (vorher 250px) und im Idle auf 300px (vorher 450px)
           background: `radial-gradient(${isIdle ? '300px' : '180px'} at ${mouseX.get()}px ${mouseY.get()}px, rgba(34, 197, 94, 0.12), transparent 70%)`,
         }}
         transition={{ type: "tween", ease: "circOut", duration: 0.1 }}
       />
 
-      {/* 3. DER HINTERHERZIEHENDE PUNKT */}
       <motion.div
         className="fixed top-0 left-0 w-3 h-3 bg-[#22c55e] rounded-full pointer-events-none z-[10000] mix-blend-difference"
         style={{
