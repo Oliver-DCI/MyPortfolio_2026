@@ -1,5 +1,5 @@
 "use client";
-import { User, Code, Database } from 'lucide-react';
+import { Code, Database } from 'lucide-react';
 import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -12,16 +12,15 @@ const About = () => {
   });
 
   // Parallax-Effekte für das Bild
-  const yImage = useTransform(scrollYProgress, [0, 1], [0, -50]); // Schweb-Effekt nach oben
-  const rotateImage = useTransform(scrollYProgress, [0, 1], [-2, 5]); // Leichte Neigung
-  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]); // Pulsierender Glow beim Vorbeiscrollen
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, -50]); 
+  const rotateImage = useTransform(scrollYProgress, [0, 1], [-2, 5]); 
+  const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
 
   const scaleYLine = useSpring(
-    useTransform(scrollYProgress, [0.3, 0.8], [0, 1]), // Startet später, damit es zur Timeline passt
+    useTransform(scrollYProgress, [0.3, 0.8], [0, 1]),
     { stiffness: 100, damping: 30 }
   );
 
-  // Timing für die Punkte (angepasst an den neuen Offset)
   const dot2Color = useTransform(scrollYProgress, [0.55, 0.60], ["var(--border-color)", "var(--accent)"]);
   const dot3Color = useTransform(scrollYProgress, [0.75, 0.80], ["var(--border-color)", "var(--accent)"]);
 
@@ -33,7 +32,7 @@ const About = () => {
           {/* Linke Seite: Bild-Container mit HERO PARALLAX */}
           <motion.div 
             style={{ y: yImage, rotate: rotateImage }}
-            className="sticky top-32 relative w-full max-w-[280px] aspect-square shrink-0 mx-auto md:mx-0 group"
+            className="sticky top-32 relative w-full max-w-[300px] aspect-[4/5] shrink-0 mx-auto md:mx-0 group"
           >
             {/* Pulsierender Hintergrund-Glow */}
             <motion.div 
@@ -41,10 +40,19 @@ const About = () => {
               className="absolute inset-0 bg-[var(--accent)] blur-[80px] opacity-20 transition-opacity group-hover:opacity-40"
             />
             
-            <div className="relative z-10 w-full h-full bg-[var(--card-bg)] border border-[var(--border-color)] rounded-[3rem] flex items-center justify-center overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-              <User size={80} className="text-[var(--accent)] opacity-50" strokeWidth={1} />
+            <div className="relative z-10 w-full h-full bg-[var(--card-bg)] border border-[var(--border-color)] rounded-[2.5rem] overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] group-hover:border-[var(--accent)]/50">
               
-              {/* Overlay-Effekt beim Hover */}
+              {/* DEIN FOTO */}
+              <img 
+                src="/myfaceportfolio2026.png" 
+                alt="Oliver - VisionDesign" 
+                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-110 group-hover:scale-100"
+              />
+              
+              {/* Edles Overlay-Gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)]/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500" />
+              
+              {/* Glas-Glanz Effekt beim Hover */}
               <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
             </div>
           </motion.div>
@@ -68,7 +76,6 @@ const About = () => {
                 viewport={{ once: true }}
                 className="relative p-8 md:p-10 bg-[var(--card-bg)] border border-[var(--border-color)] rounded-[2.5rem] shadow-xl overflow-hidden"
               >
-                {/* Dekoratives Element im Container */}
                 <div className="absolute -right-20 -bottom-20 w-64 h-64 bg-[var(--accent)] opacity-[0.03] blur-[100px] pointer-events-none" />
 
                 <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter text-[var(--text-main)] mb-6">
@@ -102,7 +109,7 @@ const About = () => {
               {/* WERDEGANG */}
               <div className="space-y-12 relative pt-4">
                 
-                {/* Meilensteine (Logik wie zuvor, aber mit optimiertem Timing) */}
+                {/* Status: Jetzt */}
                 <div className="relative pl-12">
                   <div className="absolute left-[-49px] top-1 w-6 h-6 rounded-full bg-[var(--bg-main)] border-2 border-[var(--accent)] z-20 hidden md:flex items-center justify-center">
                      <div className="w-2.5 h-2.5 rounded-full bg-[var(--accent)] animate-ping absolute" />
@@ -115,7 +122,7 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* Transition Punkt */}
+                {/* Transition */}
                 <div className="relative pl-12">
                   <motion.div 
                     style={{ borderColor: dot2Color }}
@@ -129,7 +136,7 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* Erfahrung Punkt */}
+                {/* Erfahrung */}
                 <div className="relative pl-12">
                   <motion.div 
                     style={{ borderColor: dot3Color }}
