@@ -19,6 +19,7 @@ const skillGroups = [
     skills: [
       { name: 'QA Automation', level: 100 },
       { name: 'CI/CD Pipelines', level: 90 },
+      { name: 'Unit & E2E Testing', level: 95 }, // Der neue dritte Punkt
     ],
     width: "md:col-span-1"
   },
