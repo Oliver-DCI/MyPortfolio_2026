@@ -15,8 +15,6 @@
   --accent: #22c55e;
   --border-color: #cbd5e1;
   --card-bg: #f8fafc;
-  
-  /* Hellere Taschenlampe für den Light Mode */
   --cursor-glow: rgba(34, 197, 94, 0.12);
 }
 
@@ -26,8 +24,6 @@
   --accent: #22c55e;
   --border-color: rgba(255, 255, 255, 0.1);
   --card-bg: rgba(255, 255, 255, 0.03);
-  
-  /* KORREKTUR: Hier war vorher Blau definiert. Jetzt sattes Grün-Leuchten */
   --cursor-glow: rgba(34, 197, 94, 0.25); 
   --accent-glow: rgba(34, 197, 94, 0.4);
 }
@@ -36,7 +32,6 @@
    BASE STYLES
    ============================================================ */
 @layer base {
-  /* Globale Border-Zuweisung über die Variable */
   *, ::before, ::after {
     border-color: var(--border-color);
   }
@@ -44,21 +39,42 @@
   body {
     background-color: var(--bg-main);
     color: var(--text-main);
-    /* Weiche Übergänge bei Mode-Wechsel */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
   }
 
-  /* Sanftes Scrollen für Anker-Links */
   html {
     scroll-behavior: smooth;
+    /* Firefox: Versteckt den Balken */
+    scrollbar-width: none; 
+    /* IE/Edge: Versteckt den Balken */
+    -ms-overflow-style: none; 
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: #000000;
   }
 }
 
 /* ============================================================
-   UTILITIES (Glassmorphism & Effects)
+   THE VISION-GHOST SCROLLBAR (Full Invisible)
+   ============================================================ */
+
+/* Chrome, Safari, Edge: Balken komplett ausblenden */
+::-webkit-scrollbar {
+  display: none; /* Das ist die radikalste Lösung */
+  width: 0 !important;
+  height: 0 !important;
+}
+
+/* Falls du ihn doch behalten willst, aber nur die Farbe stört, 
+   müsstest du "display: none" oben löschen. */
+
+/* ============================================================
+   UTILITIES
    ============================================================ */
 @layer utilities {
   .glass {
@@ -72,46 +88,22 @@
     box-shadow: 0 0 20px -5px var(--accent);
   }
 
-  /* Utility für reduzierten Kontrast (wie in der About-Sektion besprochen) */
   .text-soft {
     opacity: 0.75;
   }
 }
 
 /* ============================================================
-   PLACEHOLDER FIX (Hardcoded for Visibility)
+   FORMS & PLACEHOLDERS
    ============================================================ */
-
-/* Light Mode: Ein edles Mittelgrau (slate-400), gut lesbar */
 input::placeholder, 
 textarea::placeholder {
   color: #94a3b8 !important; 
   opacity: 1 !important;
 }
 
-/* Dark Mode: Dezent zurückgenommen */
 .dark input::placeholder, 
 .dark textarea::placeholder {
   color: rgba(255, 255, 255, 0.2) !important;
   opacity: 1 !important;
-}
-
-/* ============================================================
-   CUSTOM SCROLLBAR (Optional, für den 2026 Look)
-   ============================================================ */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-main);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
 }
