@@ -30,8 +30,8 @@ export const projects: Project[] = [
       "Cloudinary", 
       "OpenAI API" 
     ],
-    liveUrl: "https://you-and-me-chat.de",
-    githubUrl: "https://github.com/dein-user/you-and-me"
+    liveUrl: "https://livechat-app-kappa.vercel.app",
+    githubUrl: "https://github.com/Oliver-DCI/Livechat-App.git"
   },
   {
     id: "2",
@@ -42,8 +42,8 @@ export const projects: Project[] = [
     year: "2025",
     projectType: "Frontend Application",
     tech: ["JavaScript", "OMDb API", "REST", "SCSS"],
-    liveUrl: "https://deine-streaming-cloud.de", 
-    githubUrl: "https://github.com/dein-user/streaming-cloud"
+    liveUrl: "https://api-filme-uebung-grid.vercel.app", 
+    githubUrl: "https://github.com/Oliver-DCI/API-FILME-uebung-Grid.git"
   },
   {
   id: "3",
@@ -54,8 +54,8 @@ export const projects: Project[] = [
   year: "2026",
   projectType: "Fullstack Application (AI-Ready)",
   tech: ["Next.js", "TypeScript", "Framer Motion", "MongoDB", "PostgreSQL"],
-  liveUrl: "#", 
-  githubUrl: "#"
+  liveUrl: "https://reise-tour-app.vercel.app", 
+  githubUrl: "https://github.com/Oliver-DCI/ReiseTourApp.git"
   },
   {
     id: "4",
@@ -71,7 +71,7 @@ export const projects: Project[] = [
       "Tailwind CSS v4",  
       "Lucide Icons" 
     ],
-    liveUrl: "https://lotto-vision.de", // Hier deine URL anpassen
-    githubUrl: "https://github.com/dein-user/lotto-vision"
+    liveUrl: "https://lotto-vision-rho.vercel.app", // Hier deine URL anpassen
+    githubUrl: "https://github.com/Oliver-DCI/LottoVision.git"
   }
 ];
