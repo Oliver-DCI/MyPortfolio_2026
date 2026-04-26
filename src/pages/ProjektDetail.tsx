@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { projects } from '../data/projects';
-import { ArrowLeft, Github, Globe, Code2, Layout } from 'lucide-react';
+import { ArrowLeft, Github, Globe, Code2, Layout, Calendar, User } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const ProjectDetail = () => {
@@ -35,35 +35,41 @@ const ProjectDetail = () => {
         </Link>
       </div>
 
-      {/* Hero Header */}
-      <section className="relative h-[60vh] w-full overflow-hidden border-b border-[var(--border-color)]">
+      {/* Hero Header Section */}
+      <section className="relative h-[70vh] w-full overflow-hidden border-b border-[var(--border-color)]">
         <motion.img 
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
+          initial={{ scale: 1.2, filter: 'blur(10px)' }}
+          animate={{ scale: 1, filter: 'blur(0px)' }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           src={project.image} 
           alt={project.title} 
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/60 to-transparent" />
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-transparent" />
+        <div className="absolute inset-0 bg-black/20" />
         
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-20">
           <div className="max-w-7xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4 }}
             >
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter mb-8 leading-tight text-[var(--text-main)]">
+              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.8] text-[var(--text-main)]">
                 {project.title}
               </h1>
-              <div className="flex flex-wrap gap-2">
-                {project.tech.map(t => (
-                  <span key={t} className="px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest
-                                           bg-[var(--card-bg)] border border-[var(--border-color)] text-[var(--text-main)] opacity-80 backdrop-blur-md">
+              <div className="flex flex-wrap gap-3">
+                {project.tech.map((t, index) => (
+                  <motion.span 
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.6 + index * 0.1 }}
+                    key={t} 
+                    className="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest
+                               bg-[var(--card-bg)] border border-[var(--border-color)] text-[var(--text-main)] backdrop-blur-md"
+                  >
                     {t}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
             </motion.div>
@@ -71,82 +77,96 @@ const ProjectDetail = () => {
         </div>
       </section>
 
-      {/* Content Grid */}
+      {/* Main Content */}
       <main className="max-w-7xl mx-auto px-6 mt-24 grid md:grid-cols-12 gap-16">
         
-        {/* Links: Beschreibung */}
-        <div className="md:col-span-8 space-y-20">
-          <div className="space-y-8">
-            <div className="flex items-center gap-4 opacity-30">
-              <Code2 size={14} className="text-[var(--accent)]" />
-              <span className="text-[10px] font-black uppercase tracking-[0.4em] text-[var(--text-main)]">The Concept</span>
+        {/* Left Column: Description & Showcase */}
+        <div className="md:col-span-8 space-y-24">
+          <section className="space-y-10">
+            <div className="flex items-center gap-4 opacity-40">
+              <Code2 size={16} className="text-[var(--accent)]" />
+              <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[var(--text-main)]">The Concept</span>
             </div>
             
-            <p className="text-lg md:text-xl leading-[1.8] font-normal text-[var(--text-main)] opacity-70 tracking-wide max-w-3xl">
+            <p className="text-xl md:text-2xl leading-[1.7] font-light text-[var(--text-main)] opacity-80 max-w-4xl">
               {project.fullDescription}
             </p>
-          </div>
+          </section>
           
-          {/* Screenshot Box */}
-          <div className="group relative aspect-video rounded-[1.5rem] overflow-hidden bg-[var(--card-bg)] border border-[var(--border-color)] transition-all hover:border-[var(--accent)]/20">
-             <div className="absolute inset-0 flex items-center justify-center flex-col gap-4">
-                <Layout className="opacity-10 text-[var(--text-main)] group-hover:text-[var(--accent)] group-hover:opacity-40 transition-all" size={40} />
-                <span className="text-[9px] font-black uppercase tracking-[0.4em] text-[var(--text-main)] opacity-20 group-hover:opacity-40 transition-all">
-                  Showcase Preview
-                </span>
+          {/* Showcase Preview Image */}
+          <section className="space-y-10">
+             <div className="flex items-center gap-4 opacity-40">
+                <Layout size={16} className="text-[var(--accent)]" />
+                <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[var(--text-main)]">Interface Design</span>
              </div>
-             <div className="absolute -inset-full bg-gradient-to-tr from-[var(--accent)]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-          </div>
+             
+             <div className="group relative aspect-video rounded-[2rem] overflow-hidden bg-[var(--card-bg)] border border-[var(--border-color)] shadow-2xl transition-all hover:border-[var(--accent)]/40">
+                <img 
+                  src={project.image} 
+                  alt="Showcase" 
+                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-1000"
+                />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[var(--bg-main)]/20 to-transparent pointer-events-none" />
+             </div>
+          </section>
         </div>
 
-        {/* Rechts: Sidebar */}
+        {/* Right Column: Sidebar Actions */}
         <div className="md:col-span-4">
-          <div className="group relative p-10 rounded-[2.5rem] sticky top-32
+          <div className="group p-10 rounded-[2.5rem] sticky top-32
                           bg-[var(--card-bg)] border border-[var(--border-color)] shadow-2xl backdrop-blur-3xl 
                           overflow-hidden transition-all duration-500 hover:border-[var(--accent)]/30">
             
-            {/* DER HOVER-BALKEN (Wie in Skills-Sektion) */}
             <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[var(--accent)] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-center shadow-[4px_0_15px_var(--accent)]" />
 
-            <div className="absolute -right-20 -top-20 w-64 h-64 bg-[var(--accent)] opacity-0 group-hover:opacity-[0.03] blur-[100px] transition-opacity duration-700 pointer-events-none" />
-
-            <h3 className="text-[9px] font-black mb-10 uppercase tracking-[0.5em] opacity-30 text-center text-[var(--text-main)] relative z-10">
-              Execution & Deploy
+            <h3 className="text-[10px] font-black mb-12 uppercase tracking-[0.6em] opacity-30 text-center text-[var(--text-main)]">
+              Project Access
             </h3>
             
-            <div className="space-y-4 relative z-10">
-              <a 
-                href={project.liveUrl || "#"} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group/btn flex items-center justify-between w-full p-5 bg-[var(--accent)] text-black font-black rounded-xl transition-all hover:scale-[1.02] hover:shadow-[0_15px_30px_-10px_rgba(34,197,94,0.3)]"
-              >
-                <span className="tracking-widest uppercase text-[10px]">Launch Project</span>
-                <Globe size={18} strokeWidth={3} className="group-hover/btn:rotate-12 transition-transform" />
-              </a>
+            <div className="space-y-5 relative z-10">
+              {project.liveUrl && (
+                <a 
+                  href={project.liveUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group/btn flex items-center justify-between w-full p-6 bg-[var(--accent)] text-black font-black rounded-2xl transition-all hover:scale-[1.02] hover:shadow-[0_20px_40px_-10px_rgba(34,197,94,0.4)]"
+                >
+                  <span className="tracking-[0.2em] uppercase text-[11px]">Launch Project</span>
+                  <Globe size={20} strokeWidth={3} className="group-hover/btn:rotate-12 transition-transform" />
+                </a>
+              )}
 
-              <a 
-                href={project.githubUrl || "#"} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="group/btn flex items-center justify-between w-full p-5 
-                           bg-[var(--bg-main)] border border-[var(--border-color)] 
-                           text-[var(--text-main)] font-black rounded-xl transition-all 
-                           hover:bg-[var(--accent)] hover:text-black hover:border-[var(--accent)]"
-              >
-                <span className="tracking-widest uppercase text-[10px]">Source Code</span>
-                <Github size={18} className="group-hover/btn:scale-110 transition-transform" />
-              </a>
+              {project.githubUrl && (
+                <a 
+                  href={project.githubUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group/btn flex items-center justify-between w-full p-6 
+                             bg-[var(--bg-main)] border border-[var(--border-color)] 
+                             text-[var(--text-main)] font-black rounded-2xl transition-all 
+                             hover:bg-[var(--accent)] hover:text-black hover:border-[var(--accent)]"
+                >
+                  <span className="tracking-[0.2em] uppercase text-[11px]">View Source</span>
+                  <Github size={20} className="group-hover/btn:scale-110 transition-transform" />
+                </a>
+              )}
             </div>
 
-            <div className="mt-12 pt-8 border-t border-[var(--border-color)] space-y-4 relative z-10">
-              <div className="flex justify-between items-center opacity-40 text-[var(--text-main)]">
-                <span className="text-[9px] font-black uppercase tracking-widest">Year</span>
-                <span className="text-[9px] font-bold">2026</span>
+            {/* Project Meta Data - DYNAMISCH */}
+            <div className="mt-16 pt-10 border-t border-[var(--border-color)] space-y-6">
+              <div className="flex justify-between items-center opacity-50 text-[var(--text-main)]">
+                <div className="flex items-center gap-3">
+                  <Calendar size={12} className="text-[var(--accent)]" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Year</span>
+                </div>
+                <span className="text-[10px] font-bold">{project.year}</span>
               </div>
-              <div className="flex justify-between items-center opacity-40 text-[var(--text-main)]">
-                <span className="text-[9px] font-black uppercase tracking-widest">Client</span>
-                <span className="text-[9px] font-bold">VisionDesign Lab</span>
+              <div className="flex justify-between items-center opacity-50 text-[var(--text-main)]">
+                <div className="flex items-center gap-3">
+                  <User size={12} className="text-[var(--accent)]" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">Type</span>
+                </div>
+                <span className="text-[10px] font-bold">{project.projectType}</span>
               </div>
             </div>
           </div>

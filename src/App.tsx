@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 // Components
 import Navbar from './components/Navbar';
@@ -12,6 +12,18 @@ import VisualEffects from './components/VisualEffects';
 
 // Pages
 import ProjectDetail from './pages/ProjektDetail';
+
+/**
+ * ScrollToTop - Sorgt dafür, dass bei jedem Routenwechsel 
+ * die Seite wieder ganz oben startet.
+ */
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+};
 
 /**
  * Home Component - Bündelt alle Sektionen der Landingpage
@@ -41,6 +53,9 @@ function App() {
     <div className={darkMode ? 'dark' : ''}>
       <div className="min-h-screen bg-[var(--bg-main)] text-[var(--text-main)] transition-colors duration-300 overflow-x-hidden relative">
         <Router>
+          {/* DER FIX: ScrollToTop muss innerhalb des Routers liegen */}
+          <ScrollToTop />
+
           {/* Globaler Hintergrund-Effekt */}
           <VisualEffects />
 
@@ -58,14 +73,14 @@ function App() {
             <div className="max-w-6xl mx-auto px-6">
               <div className="flex flex-col items-center text-center">
                 
-                {/* BRANDING - Mit optischem Ausgleich für das weite Tracking */}
+                {/* BRANDING */}
                 <div className="mb-10">
                   <h2 className="text-3xl md:text-5xl font-black tracking-[0.8em] uppercase opacity-10 text-[var(--text-main)] select-none mr-[-0.8em]">
                     VisionDesign
                   </h2>
                 </div>
 
-                {/* COPYRIGHT & STATUS - Kompakt und symmetrisch zentriert */}
+                {/* COPYRIGHT & STATUS */}
                 <div className="flex flex-col items-center gap-4">
                   <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6">
                     <p className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] opacity-40 text-[var(--text-main)]">
@@ -79,7 +94,7 @@ function App() {
                     </p>
                   </div>
 
-                  {/* Zentraler Akzent-Strich als Fokuspunkt */}
+                  {/* Zentraler Akzent-Strich */}
                   <div className="mt-8 w-12 h-[1px] bg-[var(--accent)] opacity-20" />
                 </div>
               </div>
