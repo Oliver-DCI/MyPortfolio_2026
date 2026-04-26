@@ -10,7 +10,7 @@ const Projects = () => {
         {/* Header-Bereich */}
         <div className="flex items-center justify-between mb-16">
           <div className="space-y-2">
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-[var(--text-main)]">
+            <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight leading-none text-[var(--text-main)]">
               Featured <br />
               <span style={{ color: 'var(--accent)' }}>Projects</span>
             </h2>
@@ -44,21 +44,24 @@ const Projects = () => {
                   ${isTall ? "md:row-span-2" : ""}
                 `}
               >
-                {/* Bild mit Parallax-Hover-Effekt */}
+                {/* Bild-Logik: Originalfarben nur beim Hover */}
                 <img
                   src={project.image}
                   alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-50 
-                             transition-transform duration-700 group-hover:scale-110 group-hover:opacity-30"
+                  className="absolute inset-0 w-full h-full object-cover opacity-40 
+                             grayscale-[15%] transition-all duration-700 ease-in-out
+                             group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
                 />
 
                 {/* Content Overlay */}
-                {/* Im Light Mode nutzen wir einen stärkeren Verlauf nach oben, damit weißer Text lesbar bleibt */}
-                <div className="absolute inset-0 p-8 flex flex-col justify-end bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-transparent">
-                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end 
+                                bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/60 to-transparent
+                                group-hover:from-[var(--bg-main)]/80 group-hover:via-[var(--bg-main)]/30 transition-all duration-500">
+                  
+                  <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 w-full">
                     
-                    {/* Tech Tags */}
-                    <div className="flex flex-wrap gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    {/* Tech Tags: Nur beim Hover */}
+                    <div className="flex flex-wrap gap-2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
                       {project.tech.map(t => (
                         <span key={t} className="text-[10px] font-bold px-2 py-1 rounded bg-[var(--text-main)]/10 backdrop-blur-md border border-[var(--border-color)] text-[var(--text-main)]">
                           {t}
@@ -66,18 +69,22 @@ const Projects = () => {
                       ))}
                     </div>
 
-                    <h3 className={`font-black uppercase leading-none mb-2 text-[var(--text-main)] ${isLarge ? "text-4xl" : "text-2xl"}`}>
+                    {/* Projekttitel: Moderat und elegant */}
+                    <h3 className={`font-bold uppercase leading-tight mb-2 text-[var(--text-main)] 
+                      ${isLarge ? "text-2xl md:text-4xl" : "text-lg md:text-xl"}`}>
                       {project.title}
                     </h3>
                     
-                    <p className="text-sm text-[var(--text-main)] opacity-60 line-clamp-2 max-w-[300px]">
+                    {/* Kurzbeschreibung: Nutzt jetzt die volle Breite bis zum Rand */}
+                    <p className={`text-sm text-[var(--text-main)] opacity-70 group-hover:opacity-100 transition-opacity duration-500 w-full
+                      ${isLarge ? "line-clamp-2" : "line-clamp-1"}`}>
                       {project.shortDescription}
                     </p>
                   </div>
 
-                  {/* Floating Action Button */}
-                  <div className="absolute top-8 right-8 p-3 rounded-full bg-[var(--accent)] text-white md:text-black
-                                  scale-0 group-hover:scale-100 transition-transform duration-500 rotate-45 group-hover:rotate-0 shadow-lg">
+                  {/* Action Button */}
+                  <div className="absolute top-6 right-6 p-3 rounded-full bg-[var(--accent)] text-white md:text-black
+                                  scale-0 group-hover:scale-100 transition-all duration-500 rotate-45 group-hover:rotate-0 shadow-xl">
                     <ArrowUpRight size={20} strokeWidth={3} />
                   </div>
                 </div>

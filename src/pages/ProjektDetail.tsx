@@ -9,7 +9,7 @@ const ProjectDetail = () => {
 
   if (!project) return (
     <div className="h-screen flex items-center justify-center bg-[var(--bg-main)]">
-      <h1 className="text-2xl font-black uppercase tracking-[0.5em] opacity-20 text-[var(--text-main)]">
+      <h1 className="text-2xl font-bold uppercase tracking-widest opacity-20 text-[var(--text-main)]">
         Projekt nicht gefunden
       </h1>
     </div>
@@ -29,43 +29,43 @@ const ProjectDetail = () => {
           <div className="bg-[var(--accent)] p-2 rounded-full text-black group-hover:scale-90 transition-transform">
             <ArrowLeft size={18} strokeWidth={3} />
           </div>
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-[var(--text-main)]">
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[var(--text-main)]">
             Zurück
           </span>
         </Link>
       </div>
 
       {/* Hero Header Section */}
-      <section className="relative h-[70vh] w-full overflow-hidden border-b border-[var(--border-color)]">
+      <section className="relative h-[65vh] w-full overflow-hidden border-b border-[var(--border-color)]">
         <motion.img 
-          initial={{ scale: 1.2, filter: 'blur(10px)' }}
-          animate={{ scale: 1, filter: 'blur(0px)' }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          initial={{ scale: 1.1, filter: 'grayscale(100%)' }}
+          animate={{ scale: 1, filter: 'grayscale(0%)' }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
           src={project.image} 
           alt={project.title} 
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-transparent" />
-        <div className="absolute inset-0 bg-black/20" />
         
         <div className="absolute bottom-0 left-0 w-full p-6 md:p-20">
           <div className="max-w-7xl mx-auto">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
             >
-              <h1 className="text-5xl md:text-8xl font-black uppercase tracking-tighter mb-8 leading-[0.8] text-[var(--text-main)]">
+              <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6 leading-none text-[var(--text-main)] drop-shadow-2xl">
                 {project.title}
               </h1>
-              <div className="flex flex-wrap gap-3">
+              
+              <div className="flex flex-wrap gap-2">
                 {project.tech.map((t, index) => (
                   <motion.span 
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 + index * 0.1 }}
+                    transition={{ delay: 0.5 + index * 0.05 }}
                     key={t} 
-                    className="px-5 py-2 rounded-full text-[10px] font-black uppercase tracking-widest
+                    className="px-4 py-1.5 rounded-full text-[9px] font-bold uppercase tracking-wider
                                bg-[var(--card-bg)] border border-[var(--border-color)] text-[var(--text-main)] backdrop-blur-md"
                   >
                     {t}
@@ -78,26 +78,25 @@ const ProjectDetail = () => {
       </section>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 mt-24 grid md:grid-cols-12 gap-16">
+      <main className="max-w-7xl mx-auto px-6 mt-20 grid md:grid-cols-12 gap-12 md:gap-16">
         
         {/* Left Column: Description & Showcase */}
-        <div className="md:col-span-8 space-y-24">
-          <section className="space-y-10">
-            <div className="flex items-center gap-4 opacity-40">
-              <Code2 size={16} className="text-[var(--accent)]" />
-              <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[var(--text-main)]">The Concept</span>
+        <div className="md:col-span-8 space-y-20">
+          <section className="space-y-8">
+            <div className="flex items-center gap-4 opacity-30">
+              <Code2 size={14} className="text-[var(--accent)]" />
+              <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--text-main)]">The Concept</span>
             </div>
             
-            <p className="text-xl md:text-2xl leading-[1.7] font-light text-[var(--text-main)] opacity-80 max-w-4xl">
+            <p className="text-lg md:text-xl leading-relaxed text-[var(--text-main)] opacity-70 max-w-4xl">
               {project.fullDescription}
             </p>
           </section>
           
-          {/* Showcase Preview Image */}
-          <section className="space-y-10">
-             <div className="flex items-center gap-4 opacity-40">
-                <Layout size={16} className="text-[var(--accent)]" />
-                <span className="text-[11px] font-black uppercase tracking-[0.5em] text-[var(--text-main)]">Interface Design</span>
+          <section className="space-y-8">
+             <div className="flex items-center gap-4 opacity-30">
+                <Layout size={14} className="text-[var(--accent)]" />
+                <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--text-main)]">Interface Design</span>
              </div>
              
              <div className="group relative aspect-video rounded-[2rem] overflow-hidden bg-[var(--card-bg)] border border-[var(--border-color)] shadow-2xl transition-all hover:border-[var(--accent)]/40">
@@ -113,26 +112,24 @@ const ProjectDetail = () => {
 
         {/* Right Column: Sidebar Actions */}
         <div className="md:col-span-4">
-          <div className="group p-10 rounded-[2.5rem] sticky top-32
+          <div className="p-8 md:p-10 rounded-[2.5rem] sticky top-32
                           bg-[var(--card-bg)] border border-[var(--border-color)] shadow-2xl backdrop-blur-3xl 
                           overflow-hidden transition-all duration-500 hover:border-[var(--accent)]/30">
             
-            <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[var(--accent)] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-center shadow-[4px_0_15px_var(--accent)]" />
-
-            <h3 className="text-[10px] font-black mb-12 uppercase tracking-[0.6em] opacity-30 text-center text-[var(--text-main)]">
+            <h3 className="text-[9px] font-bold mb-10 uppercase tracking-[0.5em] opacity-30 text-center text-[var(--text-main)]">
               Project Access
             </h3>
             
-            <div className="space-y-5 relative z-10">
+            <div className="space-y-4 relative z-10">
               {project.liveUrl && (
                 <a 
                   href={project.liveUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group/btn flex items-center justify-between w-full p-6 bg-[var(--accent)] text-black font-black rounded-2xl transition-all hover:scale-[1.02] hover:shadow-[0_20px_40px_-10px_rgba(34,197,94,0.4)]"
+                  className="group/btn flex items-center justify-between w-full p-5 bg-[var(--accent)] text-black font-bold rounded-2xl transition-all hover:scale-[1.02] hover:shadow-[0_15px_30px_-10px_rgba(34,197,94,0.4)]"
                 >
-                  <span className="tracking-[0.2em] uppercase text-[11px]">Launch Project</span>
-                  <Globe size={20} strokeWidth={3} className="group-hover/btn:rotate-12 transition-transform" />
+                  <span className="tracking-[0.1em] uppercase text-[10px]">Launch Project</span>
+                  <Globe size={18} strokeWidth={2.5} className="group-hover/btn:rotate-12 transition-transform" />
                 </a>
               )}
 
@@ -141,32 +138,31 @@ const ProjectDetail = () => {
                   href={project.githubUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group/btn flex items-center justify-between w-full p-6 
+                  className="group/btn flex items-center justify-between w-full p-5 
                              bg-[var(--bg-main)] border border-[var(--border-color)] 
-                             text-[var(--text-main)] font-black rounded-2xl transition-all 
+                             text-[var(--text-main)] font-bold rounded-2xl transition-all 
                              hover:bg-[var(--accent)] hover:text-black hover:border-[var(--accent)]"
                 >
-                  <span className="tracking-[0.2em] uppercase text-[11px]">View Source</span>
-                  <Github size={20} className="group-hover/btn:scale-110 transition-transform" />
+                  <span className="tracking-[0.1em] uppercase text-[10px]">View Source</span>
+                  <Github size={18} className="group-hover/btn:scale-110 transition-transform" />
                 </a>
               )}
             </div>
 
-            {/* Project Meta Data - DYNAMISCH */}
-            <div className="mt-16 pt-10 border-t border-[var(--border-color)] space-y-6">
-              <div className="flex justify-between items-center opacity-50 text-[var(--text-main)]">
+            <div className="mt-12 pt-8 border-t border-[var(--border-color)] space-y-5">
+              <div className="flex justify-between items-center opacity-40 text-[var(--text-main)]">
                 <div className="flex items-center gap-3">
                   <Calendar size={12} className="text-[var(--accent)]" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Year</span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest">Year</span>
                 </div>
-                <span className="text-[10px] font-bold">{project.year}</span>
+                <span className="text-[10px]">{project.year}</span>
               </div>
-              <div className="flex justify-between items-center opacity-50 text-[var(--text-main)]">
+              <div className="flex justify-between items-center opacity-40 text-[var(--text-main)]">
                 <div className="flex items-center gap-3">
                   <User size={12} className="text-[var(--accent)]" />
-                  <span className="text-[10px] font-black uppercase tracking-widest">Type</span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest">Type</span>
                 </div>
-                <span className="text-[10px] font-bold">{project.projectType}</span>
+                <span className="text-[10px]">{project.projectType}</span>
               </div>
             </div>
           </div>
