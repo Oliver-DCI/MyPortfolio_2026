@@ -32,7 +32,7 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://you-and-me-chat.de",
     githubUrl: "https://github.com/dein-user/you-and-me"
-},
+  },
   {
     id: "2",
     title: "Streaming Cloud",
@@ -46,12 +46,24 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/dein-user/streaming-cloud"
   },
   {
-    id: "3",
+  id: "3",
+  title: "futureFLY",
+  shortDescription: "Design-Intelligence-Plattform mit KI-zentrierter Architektur.",
+  fullDescription: "Ein Fullstack-System, das als Basis für KI-gestützte Design-Audits dient. Die Architektur ist für den Einsatz von Vision-Modellen optimiert, um UI-Trends von 2026 zu analysieren. Der Fokus liegt auf einem hochperformanten State-Management (TypeScript) und einer sicheren Datenstruktur, die bereit für die Integration von Large Language Models (LLMs) ist.",
+  image: "/FutureFLY.png", 
+  year: "2026",
+  projectType: "Fullstack Application (AI-Ready)",
+  tech: ["Next.js", "TypeScript", "Framer Motion", "MongoDB", "PostgreSQL"],
+  liveUrl: "#", 
+  githubUrl: "#"
+  },
+  {
+    id: "4",
     title: "Lotto Vision",
     shortDescription: "High-End Zufalls-Algorithmus mit personalisierter Logik und Vision-Design.",
     fullDescription: "Lotto Vision ist eine hochmoderne Web-Applikation, die mathematische Präzision mit immersivem UI-Design verbindet. Kernstück ist ein deterministischer 'Glücks-Algorithmus', der basierend auf Nutzer-Inputs (Name) personalisierte Zahlenfolgen generiert. Die Anwendung nutzt modernste Technologien wie React und Tailwind CSS v4 für ein ultraschnelles Interface. Besonderes Augenmerk wurde auf das 'Vision Purple' Design gelegt, das durch Glasmorphismus-Effekte, animierte Ambient-Glow-Hintergründe und flüssige Motion-Sequenzen via Framer Motion ein echtes Premium-Gefühl vermittelt. Ein persistenter Verlauf speichert Ziehungen inklusive präzisem Zeitstempel und bietet Management-Funktionen wie das selektive Leeren der Datenbank-Historie.",
     image: "/LottoVision.png",
-    year: "2026",
+    year: "2025",
     projectType: "Interactive Web App",
     tech: [
       "React", 
@@ -61,17 +73,5 @@ export const projects: Project[] = [
     ],
     liveUrl: "https://lotto-vision.de", // Hier deine URL anpassen
     githubUrl: "https://github.com/dein-user/lotto-vision"
-  },
-  {
-    id: "4",
-    title: "VisionDesign Assistant",
-    shortDescription: "KI-Agent für Portfolio-Optimierung.",
-    fullDescription: "Ein KI-gestütztes Tool zur Analyse von UI-Trends, das Entwicklern hilft, Design-Standards von 2026 einzuhalten.",
-    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?q=80&w=1200&auto=format&fit=crop", // AI Theme
-    year: "2026",
-    projectType: "Frontend Application",
-    tech: ["OpenAI", "React", "Framer Motion"],
-    liveUrl: "#", 
-    githubUrl: "#"
-  },
+  }
 ];
