@@ -10,7 +10,7 @@ const Projects = () => {
     <section id="projects" className="py-24 px-6 md:px-12 bg-[var(--bg-main)]">
       <div className="max-w-7xl mx-auto">
         
-        {/* Header */}
+        {/* Header Section */}
         <div className="flex items-center justify-between mb-16">
           <div className="space-y-2">
             <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight leading-none text-[var(--text-main)]">
@@ -28,9 +28,10 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Grid */}
+        {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-auto">
           {projects.map((project, index) => {
+            // Logik für das Bento-Grid Layout
             const isFirstRowLarge = index === 0;
             const isFirstRowTall = index === 1;
             const isAfterFirstRow = index >= 2;
@@ -54,7 +55,7 @@ const Projects = () => {
                              transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
                              hover:border-[var(--accent)]/30 hover:shadow-2xl"
                 >
-                  {/* Bild */}
+                  {/* Projekt Hintergrundbild */}
                   <img
                     src={project.image}
                     alt={project.title}
@@ -62,13 +63,13 @@ const Projects = () => {
                                transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:opacity-100"
                   />
 
-                  {/* Overlay Gradient */}
+                  {/* Overlay Gradient für bessere Lesbarkeit */}
                   <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
 
                   {/* Content Container */}
                   <div className="absolute inset-0 p-8 flex flex-col justify-end">
                     
-                    {/* TECH TAGS - HIER IST DIE LOGIK */}
+                    {/* Tech Tags - Erscheinen beim Hover */}
                     <div className="flex flex-wrap gap-2 mb-4 
                                     max-h-0 opacity-0 -translate-y-2 overflow-hidden
                                     group-hover:max-h-20 group-hover:opacity-100 group-hover:translate-y-0
@@ -85,9 +86,13 @@ const Projects = () => {
                       ))}
                     </div>
 
+                    {/* Titel & Beschreibung */}
                     <div className="relative z-10">
-                      <h3 className={`font-black uppercase leading-tight mb-2 text-[var(--text-main)] transition-transform duration-500
-                        ${isFirstRowLarge || (isAfterFirstRow && !isFirstRowTall) ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"}`}>
+                      <h3 className={`font-black uppercase leading-tight mb-1 text-[var(--text-main)] transition-transform duration-500
+                        ${isFirstRowLarge || (isAfterFirstRow && !isFirstRowTall) 
+                          ? "text-2xl md:text-3xl" // Moderate Größe für große Karten
+                          : "text-lg md:text-xl"   // Kompakte Größe für schmale Karten
+                        }`}>
                         {project.title}
                       </h3>
                       
@@ -96,7 +101,7 @@ const Projects = () => {
                       </p>
                     </div>
 
-                    {/* ACTION BUTTON - Glassmorphism Look */}
+                    {/* Action Button (Top Right) */}
                     <div className="absolute top-8 right-8 p-4 rounded-full 
                                     bg-[var(--bg-main)]/20 backdrop-blur-md border border-white/10
                                     text-[var(--text-main)] scale-90 opacity-0 translate-x-4
