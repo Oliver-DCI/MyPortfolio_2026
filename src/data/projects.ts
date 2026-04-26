@@ -47,15 +47,20 @@ export const projects: Project[] = [
   },
   {
     id: "3",
-    title: "QA-Automation Suite",
-    shortDescription: "End-to-End Test Framework.",
-    fullDescription: "Ein automatisiertes Test-Framework, das meine 12-jährige Erfahrung im Quality Engineering bündelt. Fokus auf Stabilität und Performance-Metriken.",
-    image: "https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1200&auto=format&fit=crop", // Code/Testing Theme
+    title: "Lotto Vision",
+    shortDescription: "High-End Zufalls-Algorithmus mit personalisierter Logik und Vision-Design.",
+    fullDescription: "Lotto Vision ist eine hochmoderne Web-Applikation, die mathematische Präzision mit immersivem UI-Design verbindet. Kernstück ist ein deterministischer 'Glücks-Algorithmus', der basierend auf Nutzer-Inputs (Name) personalisierte Zahlenfolgen generiert. Die Anwendung nutzt modernste Technologien wie React und Tailwind CSS v4 für ein ultraschnelles Interface. Besonderes Augenmerk wurde auf das 'Vision Purple' Design gelegt, das durch Glasmorphismus-Effekte, animierte Ambient-Glow-Hintergründe und flüssige Motion-Sequenzen via Framer Motion ein echtes Premium-Gefühl vermittelt. Ein persistenter Verlauf speichert Ziehungen inklusive präzisem Zeitstempel und bietet Management-Funktionen wie das selektive Leeren der Datenbank-Historie.",
+    image: "/LottoVision.png",
     year: "2026",
-    projectType: "Frontend Application",
-    tech: ["Playwright", "Node.js", "GitHub Actions"],
-    liveUrl: "#", 
-    githubUrl: "#"
+    projectType: "Interactive Web App",
+    tech: [
+      "React", 
+      "TypeScript", 
+      "Tailwind CSS v4",  
+      "Lucide Icons" 
+    ],
+    liveUrl: "https://lotto-vision.de", // Hier deine URL anpassen
+    githubUrl: "https://github.com/dein-user/lotto-vision"
   },
   {
     id: "4",
