@@ -11,9 +11,8 @@ const About = () => {
     offset: ["start end", "end start"] 
   });
 
-  // Parallax-Effekte für das Bild
-  const yImage = useTransform(scrollYProgress, [0, 1], [0, -50]); 
-  const rotateImage = useTransform(scrollYProgress, [0, 1], [-2, 5]); 
+  // Parallax nur für den Y-Versatz
+  const yImage = useTransform(scrollYProgress, [0, 1], [0, -40]); 
   const glowScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1.2, 0.8]);
 
   const scaleYLine = useSpring(
@@ -30,33 +29,33 @@ const About = () => {
         <div className="flex flex-col md:flex-row gap-16 items-start">
           
           {/* Linke Seite: Bild-Container */}
-          <motion.div 
-            style={{ y: yImage, rotate: rotateImage }}
-            /* md:mt-5 für die perfekte Balance zwischen Normalzustand und Hover-Vergrößerung */
-            className="sticky top-32 relative w-full max-w-[300px] aspect-[4/5] shrink-0 mx-auto md:mx-0 md:mt-5 group"
-          >
-            {/* Pulsierender Hintergrund-Glow */}
+          <div className="sticky top-32 w-full max-w-[300px] shrink-0 mx-auto md:mx-0">
             <motion.div 
-              style={{ scale: glowScale }}
-              className="absolute inset-0 bg-[var(--accent)] blur-[80px] opacity-20 transition-opacity group-hover:opacity-40"
-            />
-            
-            <div className="relative z-10 w-full h-full bg-[var(--card-bg)] border border-[var(--border-color)] rounded-[2.5rem] overflow-hidden shadow-2xl transition-transform duration-500 group-hover:scale-[1.02] group-hover:border-[var(--accent)]/50">
-              
-              {/* DEIN FOTO */}
-              <img 
-                src="/myfaceportfolio2026.png" 
-                alt="Oliver - VisionDesign" 
-                className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out scale-110 group-hover:scale-100"
+              style={{ y: yImage }}
+              className="relative aspect-[4/5] w-full group"
+            >
+              {/* Pulsierender Hintergrund-Glow */}
+              <motion.div 
+                style={{ scale: glowScale }}
+                className="absolute inset-0 bg-[var(--accent)] blur-[80px] opacity-20 transition-opacity group-hover:opacity-40"
               />
               
-              {/* Edles Overlay-Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)]/80 via-transparent to-transparent opacity-60 group-hover:opacity-20 transition-opacity duration-500" />
-              
-              {/* Glas-Glanz Effekt beim Hover */}
-              <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-          </motion.div>
+              {/* DER RAHMEN - Jetzt ohne Framer-Motion-Transformationen */}
+              <div className="relative z-10 w-full h-full bg-[var(--card-bg)] border border-[var(--border-color)] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-300 group-hover:scale-[1.01] group-hover:border-[var(--accent)]/50">
+                
+                {/* DEIN FOTO */}
+                <img 
+                  src="/myfaceportfolio2026.png" 
+                  alt="Oliver - VisionDesign" 
+                  className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 ease-in-out"
+                />
+                
+                {/* Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)]/80 via-transparent to-transparent opacity-60 pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-[var(--accent)]/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none" />
+              </div>
+            </motion.div>
+          </div>
 
           {/* Rechte Seite: Content */}
           <div className="flex-1 w-full relative">
@@ -109,7 +108,6 @@ const About = () => {
 
               {/* WERDEGANG */}
               <div className="space-y-12 relative pt-4">
-                
                 {/* Status: Jetzt */}
                 <div className="relative pl-12">
                   <div className="absolute left-[-49px] top-1 w-6 h-6 rounded-full bg-[var(--bg-main)] border-2 border-[var(--accent)] z-20 hidden md:flex items-center justify-center">
@@ -123,12 +121,8 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* Transition */}
                 <div className="relative pl-12">
-                  <motion.div 
-                    style={{ borderColor: dot2Color }}
-                    className="absolute left-[-49px] top-1 w-6 h-6 rounded-full bg-[var(--bg-main)] border-2 z-20 hidden md:flex items-center justify-center transition-colors duration-500"
-                  >
+                  <motion.div style={{ borderColor: dot2Color }} className="absolute left-[-49px] top-1 w-6 h-6 rounded-full bg-[var(--bg-main)] border-2 z-20 hidden md:flex items-center justify-center transition-colors duration-500">
                     <motion.div style={{ backgroundColor: dot2Color }} className="w-2 h-2 rounded-full" />
                   </motion.div>
                   <div className="space-y-1">
@@ -137,12 +131,8 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* Erfahrung */}
                 <div className="relative pl-12">
-                  <motion.div 
-                    style={{ borderColor: dot3Color }}
-                    className="absolute left-[-49px] top-1 w-6 h-6 rounded-full bg-[var(--bg-main)] border-2 z-20 hidden md:flex items-center justify-center transition-colors duration-500"
-                  >
+                  <motion.div style={{ borderColor: dot3Color }} className="absolute left-[-49px] top-1 w-6 h-6 rounded-full bg-[var(--bg-main)] border-2 z-20 hidden md:flex items-center justify-center transition-colors duration-500">
                     <motion.div style={{ backgroundColor: dot3Color }} className="w-2 h-2 rounded-full" />
                   </motion.div>
                   <div className="space-y-1 text-left">
@@ -151,7 +141,6 @@ const About = () => {
                   </div>
                 </div>
 
-                {/* Ausbildung */}
                 <div className="relative pl-12">
                   <div className="absolute left-[-49px] top-1 w-6 h-6 rounded-full bg-[var(--accent)] z-10 hidden md:flex items-center justify-center shadow-[0_0_15px_var(--accent)]">
                     <div className="w-2 h-2 bg-white rounded-sm rotate-45" />
@@ -161,7 +150,6 @@ const About = () => {
                     <h4 className="text-xl font-black text-[var(--text-main)] uppercase tracking-tight">Ausbildung zum Informatiker</h4>
                   </div>
                 </div>
-
               </div>
             </div>
           </div>

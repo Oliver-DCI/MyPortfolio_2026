@@ -10,7 +10,7 @@ const Projects = () => {
     <section id="projects" className="py-24 px-6 md:px-12 bg-[var(--bg-main)]">
       <div className="max-w-7xl mx-auto">
         
-        {/* Header-Bereich */}
+        {/* Header */}
         <div className="flex items-center justify-between mb-16">
           <div className="space-y-2">
             <h2 className="text-4xl md:text-5xl font-bold uppercase tracking-tight leading-none text-[var(--text-main)]">
@@ -22,21 +22,17 @@ const Projects = () => {
               <span>Scroll to explore</span>
             </div>
           </div>
-          
           <div className="hidden md:block text-right">
             <p className="text-sm font-bold uppercase tracking-widest opacity-30 text-[var(--text-main)]">Selection 2025/26</p>
             <div className="h-1 w-20 bg-[var(--accent)] ml-auto mt-2"></div>
           </div>
         </div>
 
-        {/* Das optimierte Grid */}
+        {/* Grid */}
         <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-auto">
           {projects.map((project, index) => {
-            // ZEILE 1: Index 0 (groß) & 1 (hoch)
             const isFirstRowLarge = index === 0;
             const isFirstRowTall = index === 1;
-
-            // AB ZEILE 2: Alle weiteren Projekte
             const isAfterFirstRow = index >= 2;
 
             return (
@@ -54,57 +50,60 @@ const Projects = () => {
               >
                 <Link
                   to={`/project/${project.id}`}
-                  className="group relative block w-full h-full rounded-[2rem] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)]
+                  className="group relative block w-full h-full rounded-[2.5rem] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)]
                              transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-                             /* KORREKTUR: Border wird jetzt nur noch subtil aufgehellt, nicht grün */
-                             hover:border-[var(--text-main)]/20 hover:shadow-[0_10px_40px_-15px_rgba(0,0,0,0.5)]"
+                             hover:border-[var(--accent)]/30 hover:shadow-2xl"
                 >
-                  {/* Bild-Logik - JETZT SICHTBAR */}
+                  {/* Bild */}
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover 
-                               /* KORREKTUR: Start-Opacity auf 90% (fast voll), Grayscale entfernt */
-                               opacity-90 transition-all duration-700 ease-in-out
-                               /* KORREKTUR: Hover wird jetzt subtiler: volle Opacity + Zoom */
-                               group-hover:scale-105 group-hover:opacity-100"
+                    className="absolute inset-0 w-full h-full object-cover opacity-80 
+                               transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:opacity-100"
                   />
 
-                  {/* Content Overlay - Optimiert für helle Bilder */}
-                  <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end 
-                                  /* KORREKTUR: Stärkerer Gradient im Normalzustand, um Textlesbarkeit zu garantieren */
-                                  bg-gradient-to-t from-[var(--bg-main)]/90 via-[var(--bg-main)]/50 to-transparent
-                                  /* KORREKTUR: Hover-Gradient wird subtiler, damit das Bild strahlt */
-                                  group-hover:from-[var(--bg-main)]/90 group-hover:via-[var(--bg-main)]/10 transition-all duration-500">
-                    
-                    {/* Der Inhalt bleibt immer sichtbar, kein Hochscrollen mehr */}
-                    <div className="translate-y-0 transition-transform duration-500 w-full">
-                      
-                      {/* Tech Tags: Immer sichtbar, aber subtil */}
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.tech.map(t => (
-                          <span key={t} className="text-[10px] font-bold px-2 py-1 rounded bg-[var(--bg-main)]/80 backdrop-blur-sm border border-[var(--border-color)] text-[var(--text-main)] opacity-80 group-hover:opacity-100 transition-opacity">
-                            {t}
-                          </span>
-                        ))}
-                      </div>
+                  {/* Overlay Gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
 
-                      {/* Projekttitel: Immer voll sichtbar */}
-                      <h3 className={`font-bold uppercase leading-tight mb-2 text-[var(--text-main)] 
-                        ${isFirstRowLarge || (isAfterFirstRow && !isFirstRowTall) ? "text-2xl md:text-3xl" : "text-lg md:text-xl"}`}>
+                  {/* Content Container */}
+                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                    
+                    {/* TECH TAGS - HIER IST DIE LOGIK */}
+                    <div className="flex flex-wrap gap-2 mb-4 
+                                    max-h-0 opacity-0 -translate-y-2 overflow-hidden
+                                    group-hover:max-h-20 group-hover:opacity-100 group-hover:translate-y-0
+                                    transition-all duration-500 ease-out">
+                      {project.tech.map(t => (
+                        <span 
+                          key={t} 
+                          className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full 
+                                     bg-[var(--bg-main)]/30 backdrop-blur-xl border border-white/5 
+                                     text-[var(--text-main)] shadow-xl"
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+
+                    <div className="relative z-10">
+                      <h3 className={`font-black uppercase leading-tight mb-2 text-[var(--text-main)] transition-transform duration-500
+                        ${isFirstRowLarge || (isAfterFirstRow && !isFirstRowTall) ? "text-3xl md:text-4xl" : "text-xl md:text-2xl"}`}>
                         {project.title}
                       </h3>
                       
-                      {/* Kurzbeschreibung: Immer voll sichtbar */}
-                      <p className="text-sm text-[var(--text-main)] opacity-80 group-hover:opacity-100 transition-opacity duration-500 w-full line-clamp-2">
+                      <p className="text-sm text-[var(--text-main)] opacity-60 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 max-w-md">
                         {project.shortDescription}
                       </p>
                     </div>
 
-                    {/* Action Button: Immer sichtbar, aber subtil */}
-                    <div className="absolute top-6 right-6 p-3 rounded-full bg-[var(--accent)] text-white md:text-black
-                                    scale-90 group-hover:scale-100 transition-all duration-500 rotate-0 shadow-xl opacity-70 group-hover:opacity-100">
-                      <ArrowUpRight size={20} strokeWidth={3} />
+                    {/* ACTION BUTTON - Glassmorphism Look */}
+                    <div className="absolute top-8 right-8 p-4 rounded-full 
+                                    bg-[var(--bg-main)]/20 backdrop-blur-md border border-white/10
+                                    text-[var(--text-main)] scale-90 opacity-0 translate-x-4
+                                    group-hover:scale-100 group-hover:opacity-100 group-hover:translate-x-0 
+                                    group-hover:bg-[var(--accent)] group-hover:text-white
+                                    transition-all duration-500 shadow-2xl">
+                      <ArrowUpRight size={22} strokeWidth={3} />
                     </div>
                   </div>
                 </Link>
