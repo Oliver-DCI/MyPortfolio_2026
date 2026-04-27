@@ -2,7 +2,7 @@
 
 import { Link } from "react-router-dom";
 import { projects } from "../data/projects";
-import { ArrowUpRight, LayoutGrid } from "lucide-react";
+import { ArrowRight, LayoutGrid } from "lucide-react";
 import { motion } from "framer-motion";
 
 const Projects = () => {
@@ -29,13 +29,8 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6 auto-rows-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 auto-rows-auto">
           {projects.map((project, index) => {
-            // Logik für das Bento-Grid Layout
-            const isFirstRowLarge = index === 0;
-            const isFirstRowTall = index === 1;
-            const isAfterFirstRow = index >= 2;
-
             return (
               <motion.div
                 key={project.id}
@@ -43,33 +38,37 @@ const Projects = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className={`
-                  ${!isAfterFirstRow && isFirstRowLarge ? "md:col-span-4 h-[560px]" : ""}
-                  ${!isAfterFirstRow && isFirstRowTall ? "md:col-span-2 h-[560px]" : ""}
-                  ${isAfterFirstRow ? "md:col-span-3 h-[380px]" : ""}
-                `}
+                className="h-[380px] group" 
               >
                 <Link
                   to={`/project/${project.id}`}
-                  className="group relative block w-full h-full rounded-[2.5rem] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)]
+                  className="relative block w-full h-full rounded-[2.5rem] overflow-hidden border border-[var(--border-color)] bg-[var(--card-bg)]
                              transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)]
-                             hover:border-[var(--accent)]/30 hover:shadow-2xl"
+                             group-hover:scale-[1.01] group-hover:border-[var(--accent)]/50
+                             group-hover:shadow-[0_0_30px_-5px_var(--accent)]"
+                  style={{
+                    // Dieser Inline-Style erzwingt den Glow mit deiner CSS-Variable
+                    boxShadow: "0 0 0 transparent"
+                  }}
                 >
                   {/* Projekt Hintergrundbild */}
                   <img
                     src={project.image}
                     alt={project.title}
                     className="absolute inset-0 w-full h-full object-cover opacity-80 
-                               transition-all duration-700 ease-in-out group-hover:scale-110 group-hover:opacity-100"
+                               transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-100"
                   />
 
-                  {/* Overlay Gradient für bessere Lesbarkeit */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
+                  {/* Dunkles Overlay unten für Text-Kontrast */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-transparent opacity-90" />
+                  
+                  {/* Der sanfte innere Glow beim Hover (wie auf About-Page) */}
+                  <div className="absolute inset-0 bg-[var(--accent)] opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none" />
 
                   {/* Content Container */}
                   <div className="absolute inset-0 p-8 flex flex-col justify-end">
                     
-                    {/* Tech Tags - Erscheinen beim Hover */}
+                    {/* Tech Tags */}
                     <div className="flex flex-wrap gap-2 mb-4 
                                     max-h-0 opacity-0 -translate-y-2 overflow-hidden
                                     group-hover:max-h-20 group-hover:opacity-100 group-hover:translate-y-0
@@ -77,8 +76,8 @@ const Projects = () => {
                       {project.tech.map(t => (
                         <span 
                           key={t} 
-                          className="text-[10px] font-black uppercase tracking-widest px-3 py-1.5 rounded-full 
-                                     bg-[var(--bg-main)]/30 backdrop-blur-xl border border-white/5 
+                          className="text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full 
+                                     bg-[var(--bg-main)]/60 backdrop-blur-xl border border-white/5 
                                      text-[var(--text-main)] shadow-xl"
                         >
                           {t}
@@ -87,28 +86,25 @@ const Projects = () => {
                     </div>
 
                     {/* Titel & Beschreibung */}
-                    <div className="relative z-10">
-                      <h3 className={`font-black uppercase leading-tight mb-1 text-[var(--text-main)] transition-transform duration-500
-                        ${isFirstRowLarge || (isAfterFirstRow && !isFirstRowTall) 
-                          ? "text-2xl md:text-3xl" // Moderate Größe für große Karten
-                          : "text-lg md:text-xl"   // Kompakte Größe für schmale Karten
-                        }`}>
+                    <div className="relative z-10 w-full">
+                      <h3 className="font-black uppercase leading-tight mb-1 text-[var(--text-main)] transition-transform duration-500 text-lg md:text-xl">
                         {project.title}
                       </h3>
                       
-                      <p className="text-sm text-[var(--text-main)] opacity-60 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 max-w-md">
+                      <p className="text-sm text-[var(--text-main)] opacity-60 group-hover:opacity-100 transition-opacity duration-500 line-clamp-2 w-full">
                         {project.shortDescription}
                       </p>
                     </div>
 
-                    {/* Action Button (Top Right) */}
-                    <div className="absolute top-8 right-8 p-4 rounded-full 
-                                    bg-[var(--bg-main)]/20 backdrop-blur-md border border-white/10
-                                    text-[var(--text-main)] scale-90 opacity-0 translate-x-4
-                                    group-hover:scale-100 group-hover:opacity-100 group-hover:translate-x-0 
-                                    group-hover:bg-[var(--accent)] group-hover:text-white
-                                    transition-all duration-500 shadow-2xl">
-                      <ArrowUpRight size={22} strokeWidth={3} />
+                    {/* "Ansehen" Text - Jetzt maximal oben rechts (top-4 right-4) */}
+                    <div className="absolute top-4 right-4 flex items-center gap-2
+                                    text-[var(--accent)] opacity-0 translate-x-2
+                                    group-hover:opacity-100 group-hover:translate-x-0 
+                                    transition-all duration-500 ease-out">
+                      <span className="text-[10px] font-black uppercase tracking-[0.2em]">
+                        Ansehen
+                      </span>
+                      <ArrowRight size={14} strokeWidth={3} />
                     </div>
                   </div>
                 </Link>

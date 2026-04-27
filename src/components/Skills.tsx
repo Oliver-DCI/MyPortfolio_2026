@@ -10,8 +10,7 @@ const skillGroups = [
       { name: 'React / Next.js 15', level: 95 },
       { name: 'TypeScript', level: 90 },
       { name: 'Tailwind CSS', level: 100 },
-    ],
-    width: "md:col-span-2"
+    ]
   },
   {
     title: "QA & Strategy",
@@ -19,9 +18,8 @@ const skillGroups = [
     skills: [
       { name: 'QA Automation', level: 100 },
       { name: 'CI/CD Pipelines', level: 90 },
-      { name: 'Unit & E2E Testing', level: 95 }, // Der neue dritte Punkt
-    ],
-    width: "md:col-span-1"
+      { name: 'Unit & E2E Testing', level: 95 },
+    ]
   },
   {
     title: "Backend & Data",
@@ -30,8 +28,7 @@ const skillGroups = [
       { name: 'Node.js', level: 75 },
       { name: 'PostgreSQL / Prisma', level: 85 },
       { name: 'MongoDB', level: 80 },
-    ],
-    width: "md:col-span-1"
+    ]
   },
   {
     title: "Soft Skills & Labs",
@@ -40,8 +37,7 @@ const skillGroups = [
       { name: 'Clean Code', level: 95 },
       { name: 'Agile Methoden', level: 90 },
       { name: 'Mentoring', level: 85 },
-    ],
-    width: "md:col-span-2"
+    ]
   },
 ];
 
@@ -57,7 +53,8 @@ const Skills = () => {
           <div className="h-1 w-20 bg-[var(--accent)] mt-4 shadow-[0_0_15px_var(--accent)]"></div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Grid auf 2 Spalten gesetzt für einheitliche Kartengrößen */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {skillGroups.map((group, gIndex) => (
             <motion.div 
               key={group.title}
@@ -65,8 +62,8 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: gIndex * 0.1 }}
               viewport={{ once: true }}
-              className={`p-8 md:p-10 rounded-[2.5rem] bg-[var(--card-bg)] border border-[var(--border-color)] 
-                         hover:border-[var(--accent)]/30 transition-all duration-500 group relative overflow-hidden ${group.width}`}
+              className="p-8 md:p-10 rounded-[2.5rem] bg-[var(--card-bg)] border border-[var(--border-color)] 
+                         hover:border-[var(--accent)]/30 transition-all duration-500 group relative overflow-hidden h-full"
             >
               {/* --- REFERENZ EFFEKT: DER LINKE AKZENT-BALKEN --- */}
               <div className="absolute left-0 top-0 bottom-0 w-[4px] bg-[var(--accent)] scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-center shadow-[4px_0_15px_var(--accent)]" />
@@ -99,8 +96,8 @@ const Skills = () => {
                         transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                         className="h-full bg-[var(--accent)] relative shadow-[0_0_15px_var(--accent)]"
                       >
-                        {/* Glanz-Effekt auf dem Balken */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:animate-[shimmer_2s_infinite]" />
+                        {/* Glanz-Effekt auf dem Balken - Shimmer Animation via Tailwind Utility oder Global CSS falls vorhanden */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-[2000ms] ease-in-out" />
                       </motion.div>
                     </div>
                   </div>
