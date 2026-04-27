@@ -36,7 +36,7 @@ const ProjectDetail = () => {
       </div>
 
       {/* Hero Header Section */}
-      <section className="relative h-[65vh] w-full overflow-hidden border-b border-[var(--border-color)]">
+      <section className="relative h-[60vh] w-full overflow-hidden border-b border-[var(--border-color)]">
         <motion.img 
           initial={{ scale: 1.1, filter: 'grayscale(100%)' }}
           animate={{ scale: 1, filter: 'grayscale(0%)' }}
@@ -54,7 +54,8 @@ const ProjectDetail = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold uppercase tracking-tight mb-6 leading-none text-[var(--text-main)] drop-shadow-2xl">
+              {/* Titel deutlich kleiner gemacht */}
+              <h1 className="text-3xl md:text-4xl font-bold uppercase tracking-tight mb-6 leading-none text-[var(--text-main)] drop-shadow-2xl">
                 {project.title}
               </h1>
               
@@ -88,7 +89,8 @@ const ProjectDetail = () => {
               <span className="text-[10px] font-bold uppercase tracking-[0.4em] text-[var(--text-main)]">The Concept</span>
             </div>
             
-            <p className="text-lg md:text-xl leading-relaxed text-[var(--text-main)] opacity-70 max-w-4xl">
+            {/* Beschreibung etwas kleiner gemacht */}
+            <p className="text-base md:text-lg leading-relaxed text-[var(--text-main)] opacity-70 max-w-4xl">
               {project.fullDescription}
             </p>
           </section>
