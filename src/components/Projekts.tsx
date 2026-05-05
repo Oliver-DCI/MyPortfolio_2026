@@ -55,12 +55,14 @@ const Projects = () => {
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-80 
-                               transition-all duration-700 ease-in-out group-hover:scale-105 group-hover:opacity-100"
+                    className="absolute inset-0 w-full h-full object-cover opacity-70 grayscale-[0.2]
+                               transition-all duration-700 ease-in-out 
+                               group-hover:scale-105 group-hover:opacity-100 group-hover:grayscale-0"
                   />
 
                   {/* Dunkles Overlay unten für Text-Kontrast */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-transparent opacity-90" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-main)] via-[var(--bg-main)]/40 to-transparent 
+                                  opacity-80 transition-opacity duration-500 group-hover:opacity-30" />
                   
                   {/* Der sanfte innere Glow beim Hover (wie auf About-Page) */}
                   <div className="absolute inset-0 bg-[var(--accent)] opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500 pointer-events-none" />

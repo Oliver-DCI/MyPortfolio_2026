@@ -14,7 +14,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1", // ID angepasst wie gewünscht
-    title: "YOU&ME – High-End Realtime Messenger",
+    title: "YOU&ME – Messenger",
     shortDescription: "Fullstack-Kommunikationsplattform mit KI-Integration, Realtime-Messaging und Social-Features.",
     fullDescription: "YOU&ME ist ein hochkomplexes Fullstack-Projekt, das die Grenzen einer klassischen Chat-App überschreitet. Kernstück ist die Echtzeit-Kommunikation via Pusher, ergänzt durch ein intelligentes KI-System. Nutzer können nicht nur in Echtzeit chatten, sondern Profile mit Musik (MP3) und Bildern personalisieren, die über Cloudinary gehostet werden. Das Projekt umfasst ein vollständiges Social-Ökosystem: Von der Freundschaftsanfrage über eine globale Suche bis hin zu einem Newsfeed, in dem Beiträge mit Bildern, Texten und YouTube-Links gepostet und kommentiert werden können. Ein mächtiges Admin-Dashboard liefert dem Betreiber volle Kontrolle über Nutzerzahlen und Medien-Assets, während technische Features wie Passwort-Hashing und ein geschütztes Admin-Panel für maximale Sicherheit sorgen.",
     image: "/YOU&ME.png", // Pfad auf deine lokale Datei angepasst
