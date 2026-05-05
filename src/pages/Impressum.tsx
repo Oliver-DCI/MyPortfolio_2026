@@ -11,7 +11,7 @@ const Impressum = () => {
         </section>
         <section>
           <h2 className="text-[var(--accent)] font-bold uppercase mb-2">Kontakt</h2>
-          <p>Telefon: +49 1627214244<br />E-Mail: vxo11vxo@gmail.com</p>
+          <p>Telefon: +49 1627214244<br />E-Mail: vision69design@gmail.com</p>
         </section>
       </div>
     </main>
