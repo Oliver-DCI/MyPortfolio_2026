@@ -12,8 +12,30 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+
   {
-    id: "1", // ID angepasst wie gewünscht
+  id: "1", // Oder die nächste freie ID in deinem Portfolio
+  title: "shop4you – E-Commerce Shop",
+  shortDescription: "Moderne Fullstack-E-Commerce-Plattform mit Supabase-Datenbank, Stripe-Zahlungsabwicklung und Cloudinary.",
+  fullDescription: "shop4you ist eine voll funktionsfähige E-Commerce-Anwendung, die für ein nahtloses Online-Shopping-Erlebnis entwickelt wurde. Die Plattform nutzt Next.js und PostgreSQL (gehostet auf Supabase mit PgBouncer und Prisma ORM) für performante Datenbankabfragen. Produkte, Bilder und Medienassets werden über Cloudinary bereitgestellt. Integrierte Stripe-Schnittstellen ermöglichen sichere Zahlungsabläufe, während Umgebungsvariablen und geschützte API-Routen für hohe Sicherheitsstandards sorgen. Das responsive Dashboard-Design bietet sowohl Kunden als auch Administratoren eine intuitive Bedienung.",
+  image: "/shop4you.png", // Stelle sicher, dass dieses Bild im public-Ordner liegt
+  year: "2026",
+  projectType: "Fullstack E-Commerce",
+  tech: [
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "Prisma",
+    "PostgreSQL (Supabase)",
+    "Cloudinary",
+    "Stripe"
+  ],
+  liveUrl: "https://shop4you-eta.vercel.app",
+  githubUrl: "https://github.com/Oliver-DCI/shop4you.git"
+  },
+
+  {
+    id: "2", // ID angepasst wie gewünscht
     title: "YOU&ME – Messenger",
     shortDescription: "Fullstack-Kommunikationsplattform mit KI-Integration, Realtime-Messaging und Social-Features.",
     fullDescription: "YOU&ME ist ein hochkomplexes Fullstack-Projekt, das die Grenzen einer klassischen Chat-App überschreitet. Kernstück ist die Echtzeit-Kommunikation via Pusher, ergänzt durch ein intelligentes KI-System. Nutzer können nicht nur in Echtzeit chatten, sondern Profile mit Musik (MP3) und Bildern personalisieren, die über Cloudinary gehostet werden. Das Projekt umfasst ein vollständiges Social-Ökosystem: Von der Freundschaftsanfrage über eine globale Suche bis hin zu einem Newsfeed, in dem Beiträge mit Bildern, Texten und YouTube-Links gepostet und kommentiert werden können. Ein mächtiges Admin-Dashboard liefert dem Betreiber volle Kontrolle über Nutzerzahlen und Medien-Assets, während technische Features wie Passwort-Hashing und ein geschütztes Admin-Panel für maximale Sicherheit sorgen.",
@@ -34,7 +56,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Oliver-DCI/Livechat-App.git"
   },
   {
-    id: "2",
+    id: "3",
     title: "Streaming Cloud",
     shortDescription: "Cinema-Interface mit API-Anbindung & Dark Mode.",
     fullDescription: "Eine interaktive Movie-Plattform, die Echtzeit-Daten der OMDb API nutzt. Das Projekt besticht durch ein immersives Modal-System inklusive YouTube-Trailer-Integration, ein persistentes Favoriten-System via LocalStorage und einen nahtlosen Wechsel zwischen Dark- und Light-Mode.",
@@ -46,7 +68,7 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Oliver-DCI/API-FILME-uebung-Grid.git"
   },
   {
-  id: "3",
+  id: "4",
   title: "futureFLY",
   shortDescription: "Design-Intelligence-Plattform mit KI-zentrierter Architektur.",
   fullDescription: "Ein Fullstack-System, das als Basis für KI-gestützte Design-Audits dient. Die Architektur ist für den Einsatz von Vision-Modellen optimiert, um UI-Trends von 2026 zu analysieren. Der Fokus liegt auf einem hochperformanten State-Management (TypeScript) und einer sicheren Datenstruktur, die bereit für die Integration von Large Language Models (LLMs) ist.",
@@ -58,7 +80,7 @@ export const projects: Project[] = [
   githubUrl: "https://github.com/Oliver-DCI/ReiseTourApp.git"
   },
   {
-    id: "4",
+    id: "5",
     title: "Lotto Vision",
     shortDescription: "High-End Zufalls-Algorithmus mit personalisierter Logik und Vision-Design.",
     fullDescription: "Lotto Vision ist eine hochmoderne Web-Applikation, die mathematische Präzision mit immersivem UI-Design verbindet. Kernstück ist ein deterministischer 'Glücks-Algorithmus', der basierend auf Nutzer-Inputs (Name) personalisierte Zahlenfolgen generiert. Die Anwendung nutzt modernste Technologien wie React und Tailwind CSS v4 für ein ultraschnelles Interface. Besonderes Augenmerk wurde auf das 'Vision Purple' Design gelegt, das durch Glasmorphismus-Effekte, animierte Ambient-Glow-Hintergründe und flüssige Motion-Sequenzen via Framer Motion ein echtes Premium-Gefühl vermittelt. Ein persistenter Verlauf speichert Ziehungen inklusive präzisem Zeitstempel und bietet Management-Funktionen wie das selektive Leeren der Datenbank-Historie.",
